@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리끼리 질문팡 - 또래학습 Q&A</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 1단: 왼쪽 사이드바 (키워드) -->
+        <aside class="sidebar-left">
+            <div class="logo">
+                <h1>질문팡 🚀</h1>
+            </div>
+            <nav class="keyword-nav">
+                <h3>키워드</h3>
+                <ul>
+                    <li class="active">전체보기</li>
+                    <li>국어</li>
+                    <li>수학</li>
+                    <li>영어</li>
+                    <li>과학</li>
+                    <li>사회</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 2단: 중앙 섹션 (질문 게시판) -->
+        <main class="main-content">
+            <header class="feed-header">
+                <h2>질문 피드</h2>
+                <button id="add-question-btn" class="btn-primary">+ 질문하기</button>
+            </header>
+            
+            <section id="question-feed" class="question-feed">
+                <!-- 질문 카드가 여기에 동적으로 추가됩니다 -->
+                <div class="card skeleton">질문을 불러오는 중...</div>
+            </section>
+        </main>
+
+        <!-- 3단: 오른쪽 사이드바 (공지사항) -->
+        <aside class="sidebar-right">
+            <section class="notice-section">
+                <h3>📢 공지사항</h3>
+                <div class="notice-card">
+                    <p>이번 주 질문왕은 <strong>김철수</strong> 학생입니다! 축하해요! 👏</p>
+                </div>
+            </section>
+            <section class="info-section">
+                <h3>💡 학습 꿀팁</h3>
+                <div class="tip-card">
+                    <p>"모르는 것을 묻는 것은 잠깐 부끄럽지만, 묻지 않는 것은 평생 부끄럽다!"</p>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <!-- 질문 작성 모달 (SNS 스타일) -->
+    <div id="modal-container" class="modal-hidden">
+        <div class="modal-content">
+            <h3>새 질문 작성</h3>
+            <textarea id="question-input" placeholder="무엇이 궁금한가요?"></textarea>
+            <div class="modal-actions">
+                <button id="close-modal-btn" class="btn-secondary">취소</button>
+                <button id="submit-question-btn" class="btn-primary">등록하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
