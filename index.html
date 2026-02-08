@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,31 @@
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome: 아이콘 깨짐 방지 및 프리미엄 아이콘 사용 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
     <div class="app-container">
         <!-- 1단: 왼쪽 사이드바 (키워드) -->
         <aside class="sidebar-left">
             <div class="logo">
-                <h1>질문팡 🚀</h1>
+                <h1>질문팡 <i class="fa-solid fa-rocket" style="color: #6366f1;"></i></h1>
             </div>
             <nav class="keyword-nav">
-                <h3>키워드</h3>
-                <ul>
-                    <li class="active">전체보기</li>
-                    <li>국어</li>
-                    <li>수학</li>
-                    <li>영어</li>
-                    <li>과학</li>
-                    <li>사회</li>
+                <div class="keyword-header">
+                    <h3>주제</h3>
+                    <button id="add-topic-btn" class="btn-icon" title="주제 추가"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <ul id="topic-list">
+                    <!-- 주제 목록이 script.js에서 동적으로 생성됩니다 -->
                 </ul>
+                <!-- 인라인 주제 추가 입력창 -->
+                <div id="topic-input-container" class="topic-input-hidden">
+                    <input type="text" id="new-topic-input" placeholder="새 주제 입력...">
+                    <button id="save-topic-btn" class="btn-icon"><i class="fa-solid fa-check"></i></button>
+                    <button id="cancel-topic-btn" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+                </div>
             </nav>
         </aside>
 
@@ -34,7 +42,7 @@
                 <h2>질문 피드</h2>
                 <button id="add-question-btn" class="btn-primary">+ 질문하기</button>
             </header>
-            
+
             <section id="question-feed" class="question-feed">
                 <!-- 질문 카드가 여기에 동적으로 추가됩니다 -->
                 <div class="card skeleton">질문을 불러오는 중...</div>
@@ -44,13 +52,13 @@
         <!-- 3단: 오른쪽 사이드바 (공지사항) -->
         <aside class="sidebar-right">
             <section class="notice-section">
-                <h3>📢 공지사항</h3>
+                <h3><i class="fa-solid fa-bullhorn" style="color: #f59e0b; margin-right: 8px;"></i>공지사항</h3>
                 <div class="notice-card">
-                    <p>이번 주 질문왕은 <strong>김철수</strong> 학생입니다! 축하해요! 👏</p>
+                    <p>이번 주 질문왕은 <strong>김철수</strong> 학생입니다! 축하해요! <i class="fa-solid fa-hands-clapping"></i></p>
                 </div>
             </section>
             <section class="info-section">
-                <h3>💡 학습 꿀팁</h3>
+                <h3><i class="fa-solid fa-lightbulb" style="color: #eab308; margin-right: 8px;"></i>학습 꿀팁</h3>
                 <div class="tip-card">
                     <p>"모르는 것을 묻는 것은 잠깐 부끄럽지만, 묻지 않는 것은 평생 부끄럽다!"</p>
                 </div>
@@ -72,4 +80,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

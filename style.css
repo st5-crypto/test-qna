@@ -57,35 +57,127 @@ aside {
     margin-bottom: 40px;
 }
 
+.keyword-nav .keyword-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
 .keyword-nav h3 {
     font-size: 0.875rem;
     text-transform: uppercase;
     color: var(--text-muted);
     letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    margin: 0;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background-color: #f1f5f9;
+    color: var(--primary-color);
 }
 
 .keyword-nav ul {
     list-style: none;
 }
 
+
 .keyword-nav li {
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
     color: var(--text-main);
     transition: all 0.2s;
     margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#topic-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin-top: 4px;
+    background: #ffffff;
+    border: 2px solid #eef2ff;
+    border-radius: 8px;
+    animation: fadeIn 0.2s ease;
+}
+
+.topic-input-hidden {
+    display: none !important;
+}
+
+#new-topic-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: transparent;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .keyword-nav li:hover {
     background-color: #f1f5f9;
-    color: var(--primary-color);
+}
+
+.keyword-nav li.dragging {
+    opacity: 0.5;
+    background-color: #eef2ff;
+    border: 1px dashed var(--primary-color);
+}
+
+.keyword-nav li.drag-over {
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .keyword-nav li.active {
     background-color: #eef2ff;
+    color: var(--primary-color);
+}
+
+.topic-actions {
+    display: none;
+    gap: 4px;
+}
+
+.keyword-nav li:hover .topic-actions {
+    display: flex;
+}
+
+.topic-actions .btn-small {
+    padding: 2px 4px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.topic-actions .btn-small:hover {
     color: var(--primary-color);
 }
 
@@ -226,7 +318,7 @@ aside {
 
 /* --- 모달 스타일 --- */
 .modal-hidden {
-    display: none;
+    display: none !important;
 }
 
 #modal-container {
@@ -237,7 +329,8 @@ aside {
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
-    display: flex;
+    display: none;
+    /* 기본적으로 숨김 처리 */
     align-items: center;
     justify-content: center;
     z-index: 1000;
