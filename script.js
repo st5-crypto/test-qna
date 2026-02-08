@@ -25,6 +25,11 @@ let topics = [
     { id: 2, name: '기후 위기 대응' },
     { id: 3, name: '공동체 의식' }
 ];
+
+// 초기 공지사항 데이터
+let notices = [
+    { id: 1, content: "이번 주 질문왕은 김철수 학생입니다! 축하해요! 👏", createdAt: Date.now() - 3600000 }
+];
 let currentTopicId = 'all';
 let dragSrcIndex = null;
 
@@ -43,6 +48,15 @@ const topicInputContainer = document.getElementById('topic-input-container');
 const newTopicInput = document.getElementById('new-topic-input');
 const saveTopicBtn = document.getElementById('save-topic-btn');
 const cancelTopicBtn = document.getElementById('cancel-topic-btn');
+
+// 공지사항 관련 DOM 요소
+const noticeList = document.getElementById('notice-list');
+const addNoticeBtn = document.getElementById('add-notice-btn');
+const noticeInputContainer = document.getElementById('notice-input-container');
+const newNoticeInput = document.getElementById('new-notice-input');
+const saveNoticeBtn = document.getElementById('save-notice-btn');
+const cancelNoticeBtn = document.getElementById('cancel-notice-btn');
+let editingNoticeId = null;
 
 // 질문 카드 렌더링 함수
 function renderFeed() {
@@ -278,5 +292,82 @@ function moveTopic(index, direction) {
 document.addEventListener('DOMContentLoaded', () => {
     renderTopics();
     renderFeed();
+    renderNotices();
     hideModal();
 });
+
+// 공지사항 렌더링 함수
+function renderNotices() {
+    noticeList.innerHTML = '';
+    // 날짜 내림차순 정렬 (입력일 기준)
+    const sortedNotices = [...notices].sort((a, b) => b.createdAt - a.createdAt);
+
+    sortedNotices.forEach(notice => {
+        const card = document.createElement('div');
+        card.className = 'notice-card';
+        card.innerHTML = `
+            <p>${notice.content}</p>
+            <div class="notice-actions">
+                <button class="btn-icon btn-small" onclick="editNotice(${notice.id})"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-icon btn-small" onclick="deleteNotice(${notice.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        `;
+        noticeList.appendChild(card);
+    });
+}
+
+// 공지사항 추가 버튼
+addNoticeBtn.addEventListener('click', () => {
+    editingNoticeId = null;
+    newNoticeInput.value = '';
+    noticeInputContainer.classList.remove('topic-input-hidden');
+    newNoticeInput.focus();
+});
+
+// 공지사항 저장
+function saveNotice() {
+    const content = newNoticeInput.value.trim();
+    if (!content) return;
+
+    if (editingNoticeId) {
+        const notice = notices.find(n => n.id === editingNoticeId);
+        if (notice) notice.content = content;
+    } else {
+        notices.push({
+            id: Date.now(),
+            content: content,
+            createdAt: Date.now()
+        });
+    }
+
+    renderNotices();
+    hideNoticeInput();
+}
+
+saveNoticeBtn.addEventListener('click', saveNotice);
+cancelNoticeBtn.addEventListener('click', hideNoticeInput);
+
+function hideNoticeInput() {
+    noticeInputContainer.classList.add('topic-input-hidden');
+    newNoticeInput.value = '';
+    editingNoticeId = null;
+}
+
+// 공지사항 수정
+function editNotice(id) {
+    const notice = notices.find(n => n.id === id);
+    if (notice) {
+        editingNoticeId = id;
+        newNoticeInput.value = notice.content;
+        noticeInputContainer.classList.remove('topic-input-hidden');
+        newNoticeInput.focus();
+    }
+}
+
+// 공지사항 삭제
+function deleteNotice(id) {
+    if (confirm('이 공지사항을 삭제할까요?')) {
+        notices = notices.filter(n => n.id !== id);
+        renderNotices();
+    }
+}

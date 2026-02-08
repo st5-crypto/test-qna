@@ -52,9 +52,20 @@
         <!-- 3단: 오른쪽 사이드바 (공지사항) -->
         <aside class="sidebar-right">
             <section class="notice-section">
-                <h3><i class="fa-solid fa-bullhorn" style="color: #f59e0b; margin-right: 8px;"></i>공지사항</h3>
-                <div class="notice-card">
-                    <p>이번 주 질문왕은 <strong>김철수</strong> 학생입니다! 축하해요! <i class="fa-solid fa-hands-clapping"></i></p>
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-bullhorn" style="color: #f59e0b; margin-right: 8px;"></i>공지사항</h3>
+                    <button id="add-notice-btn" class="btn-icon"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div id="notice-list">
+                    <!-- 공지사항 컨텐츠가 script.js에서 동적으로 생성됩니다 -->
+                </div>
+                <!-- 공지사항 입력창 -->
+                <div id="notice-input-container" class="topic-input-hidden">
+                    <textarea id="new-notice-input" placeholder="새 공지사항 내용 입력..."></textarea>
+                    <div class="input-actions">
+                        <button id="save-notice-btn" class="btn-icon"><i class="fa-solid fa-check"></i></button>
+                        <button id="cancel-notice-btn" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                 </div>
             </section>
             <section class="info-section">
